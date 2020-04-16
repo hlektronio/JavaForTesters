@@ -1,8 +1,6 @@
 package com.javafortesters.chap003myfirsttest.examples;
 
 import org.junit.Test;
-import org.junit.experimental.theories.suppliers.TestedOn;
-
 import static org.junit.Assert.assertEquals;
 
 public class MyFirstTest {
