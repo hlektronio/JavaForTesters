@@ -19,4 +19,5 @@ public class TestAppEnvironmentTest {
        assertEquals("Just the Domain", "192.123.0.3", DOMAIN);
        assertEquals("Just the Port","67",PORT);
     }
+
 }
