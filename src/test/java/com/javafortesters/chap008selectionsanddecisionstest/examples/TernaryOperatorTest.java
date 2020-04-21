@@ -61,4 +61,31 @@ public class TernaryOperatorTest {
             assertFalse(truthy);
         }
     }
+
+    @Test
+    public void nestedIfElse(){
+        boolean truthy = true;
+        boolean falsey = false;
+
+        if (truthy){
+            if (!falsey){
+                if (truthy && falsey){
+                    if (falsey || truthy){
+                        assertTrue(truthy);
+                        assertFalse(falsey);
+                    }
+                }
+            }
+        } else {
+            if (!truthy){
+                if (falsey){
+                    assertTrue(falsey);
+                    assertFalse(truthy);
+                }
+            } else {
+                assertFalse(falsey);
+                assertFalse(truthy);
+            }
+        }
+    }
 }
