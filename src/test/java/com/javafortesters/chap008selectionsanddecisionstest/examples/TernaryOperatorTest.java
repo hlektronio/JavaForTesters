@@ -1,7 +1,8 @@
 package com.javafortesters.chap008selectionsanddecisionstest.examples;
 
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.Assert.*;
 
 public class TernaryOperatorTest {
 
@@ -27,5 +28,37 @@ public class TernaryOperatorTest {
 
     public String catOrCats(int numberOfCats){
         return (numberOfCats == 1) ? "cat" : "cats";
+    }
+
+    @Test
+    public void truthyIf(){
+        boolean truthy = true;
+
+        if (truthy) assertTrue(truthy);
+
+        if(truthy){
+            assertTrue(truthy);
+            assertFalse(!truthy);
+        }
+    }
+
+    @Test
+    public void truthyIfElse(){
+        boolean truthy = true;
+
+        if (truthy) assertTrue(truthy);
+        else  assertFalse(truthy);
+    }
+
+    @Test
+    public void truthyIfElseBraces(){
+        boolean truthy = true;
+
+        if (truthy){
+            assertTrue(truthy);
+            assertFalse(!truthy);
+        } else {
+            assertFalse(truthy);
+        }
     }
 }
