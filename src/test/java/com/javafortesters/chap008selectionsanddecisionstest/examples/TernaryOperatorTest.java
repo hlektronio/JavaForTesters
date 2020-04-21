@@ -88,4 +88,42 @@ public class TernaryOperatorTest {
             }
         }
     }
+
+    @Test
+    public void switchOnShortCode() {
+
+        assertEquals("UK returns United Kingdom", "United Kingdom", isCountry("UK"));
+        assertEquals("US returns United States", "United States", isCountry("us"));
+        assertEquals("USA returns United Kingdom", "United States", isCountry("uSa"));
+        assertEquals("FR returns France", "France", isCountry("FR"));
+        assertEquals("GR returns Rest Of The World", "Rest Of World", isCountry("GR"));
+    }
+
+    private String isCountry(String shortCode){
+
+        String returnedCountry;
+        switch (shortCode.toUpperCase()) {
+            case "UK": returnedCountry = "United Kingdom";
+            break;
+
+            case "US":
+            case "USA":
+            returnedCountry = "United States";
+            break;
+
+            case "FR":
+            returnedCountry = "France";
+            break;
+
+            case "SE":
+            returnedCountry = "Sweden";
+            break;
+
+            default:
+            returnedCountry = "Rest Of World";
+            break;
+            }
+        return returnedCountry;
+        }
+
 }
