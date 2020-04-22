@@ -3,6 +3,7 @@ package com.javafortesters.chap009arraysforloopiteration.examples;
 import com.javafortesters.domainentities.User;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import java.util.Arrays;
 
 public class ArrayForLoopTest {
 
@@ -57,5 +58,20 @@ public class ArrayForLoopTest {
        assertEquals("user" + userId,anotherUser.getUsername());
        userId++;
        } }
+    }
+
+    @Test
+    public void sortWorkDaysArray(){
+        String[] workdays = {"Monday", "Tuesday", "Wednesday","Thursday","Friday"};
+        Arrays.sort(workdays);
+        assertEquals("[Friday, Monday, Thursday, Tuesday, Wednesday]",Arrays.toString(workdays));
+
+    }
+    @Test
+    public void sortCaseSensitiveValues(){
+        String[] workdays = {"monday", "Tuesday", "Wednesday","thursday","Friday"};
+        Arrays.sort(workdays);
+        assertEquals("thursday",workdays[4]);
+        assertEquals("Friday",workdays[0]);
     }
 }
