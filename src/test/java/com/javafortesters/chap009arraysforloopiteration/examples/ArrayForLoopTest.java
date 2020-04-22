@@ -35,4 +35,27 @@ public class ArrayForLoopTest {
             System.out.println(user.getUsername());
         }
     }
+
+    @Test
+    public void createArrayOfHundred(){
+
+        User[] users = new User[100];
+
+        for (int i = 0; i<100; i++) {
+            int userId = i+1;
+            users[i] = new User("user"+userId,"password"+userId);
+        }
+
+        for(User aUser:users){
+            System.out.println(aUser.getUsername() + ", " + aUser.getPassword());
+
+       assertEquals("User 1 has user1 username","user1",users[0].getUsername());
+       assertEquals("User 100 has password100 password", "password100",users[99].getPassword());
+
+       int userId = 1;
+       for (User anotherUser : users){
+       assertEquals("user" + userId,anotherUser.getUsername());
+       userId++;
+       } }
+    }
 }
