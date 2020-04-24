@@ -1,11 +1,10 @@
 package com.javafortesters.chap010collections.examples;
 
 import com.javafortesters.domainentities.User;
+import com.sun.javafx.collections.MappingChange;
 import org.junit.Test;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -49,6 +48,23 @@ public class CreateManipulateList {
 
         users.add(petros);
         assertEquals(1, users.size());
+
+    }
+
+    @Test
+    public void createMapOfUsers(){
+        Map<String,User> users = new HashMap<String, User>();
+        assertTrue(users.isEmpty());
+
+        User electra = new User("electra","fubar");
+        User bill = new User("vassilis","foobar");
+
+        users.put("user",electra);
+        users.put("user",bill);
+
+        assertTrue(users.size()==1);
+        assertEquals(bill,users.get("user"));
+        assertFalse(users.get("user")==electra);
 
     }
 }
