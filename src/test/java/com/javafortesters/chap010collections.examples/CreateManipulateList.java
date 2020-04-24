@@ -39,7 +39,7 @@ public class CreateManipulateList {
     public void createSetOfUsers(){
         Set<User> users = new HashSet<User>();
 
-        assertTrue(users.size()==0);
+        assertTrue(users.isEmpty());
 
         User petros = new User("petros","moro");
         users.add(petros);
