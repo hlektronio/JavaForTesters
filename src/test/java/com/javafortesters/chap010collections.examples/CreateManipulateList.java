@@ -2,9 +2,10 @@ package com.javafortesters.chap010collections.examples;
 
 import com.javafortesters.domainentities.User;
 import org.junit.Test;
-
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -31,6 +32,23 @@ public class CreateManipulateList {
         users.remove(0);
         assertFalse(users.contains(bill));
         assertTrue(users.size()==1);
+
+    }
+
+    @Test
+    public void createSetOfUsers(){
+        Set<User> users = new HashSet<User>();
+
+        assertTrue(users.size()==0);
+
+        User petros = new User("petros","moro");
+        users.add(petros);
+
+        assertEquals(1, users.size());
+        assertTrue(users.contains(petros));
+
+        users.add(petros);
+        assertEquals(1, users.size());
 
     }
 }
