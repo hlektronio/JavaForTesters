@@ -33,7 +33,9 @@ public class User {
 
     public String getUrl(){
         return this.testAppEnv.getUrl();
-
+    }
+    public String getPermission(){
+        return "Normal";
     }
 
 
