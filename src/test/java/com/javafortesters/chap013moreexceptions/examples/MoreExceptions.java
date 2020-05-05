@@ -21,16 +21,16 @@ public class MoreExceptions {
         }
     }
 
-    @Test
-    public void exceptionIsThrownInConstructor() {
-        User  user;
-        try {
-            user = new User("electra", "1235");
-            fail("An Invalid Password Exception should have been thrown");
-        } catch (InvalidPassword invalidPassword) {
-            assertTrue(invalidPassword.getMessage().contains("Password must be more than 6 characters"));
-        }
-        }
+//    @Test
+//    public void exceptionIsThrownInConstructor() {
+//        User  user;
+//        try {
+//            user = new User("electra", "1235");
+//            fail("An Invalid Password Exception should have been thrown");
+//        } catch (InvalidPassword invalidPassword) {
+//            assertTrue(invalidPassword.getMessage().contains("Password must be more than 6 characters"));
+//        }
+//        }
 
     @Test
     public void exceptionIsThrownInDefaultConstructor() throws InvalidPassword{

@@ -21,10 +21,10 @@ public class User {
         return password;
     }
 
-    public User(String username, String password)throws InvalidPassword{
-        if(password.length()<6){
-            throw new InvalidPassword("Password must be more than 6 characters");
-        }
+    public User(String username, String password)/*throws InvalidPassword*/{
+//        if(password.length()<6){
+//            throw new InvalidPassword("Password must be more than 6 characters");
+//        }
         this.username = username;
         this.password = password;
         this.testAppEnv = new TestAppEnv();

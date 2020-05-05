@@ -1,5 +1,6 @@
 package com.javafortesters.chap010collections.examples;
 
+import com.javafortesters.domainentities.InvalidPassword;
 import com.javafortesters.domainentities.User;
 import com.sun.javafx.collections.MappingChange;
 import org.junit.Test;
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
 public class CreateManipulateList {
 
     @Test
-    public void createListOfUsers(){
+    public void createListOfUsers() throws InvalidPassword {
         List <User> users = new ArrayList<User>();
 
         assertTrue(users.size() == 0);
@@ -35,7 +36,7 @@ public class CreateManipulateList {
     }
 
     @Test
-    public void createSetOfUsers(){
+    public void createSetOfUsers()  {
         Set<User> users = new HashSet<User>();
 
         assertTrue(users.isEmpty());
@@ -52,7 +53,7 @@ public class CreateManipulateList {
     }
 
     @Test
-    public void createMapOfUsers(){
+    public void createMapOfUsers()  {
         Map<String,User> users = new HashMap<String, User>();
         assertTrue(users.isEmpty());
 

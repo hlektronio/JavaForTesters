@@ -1,5 +1,6 @@
 package com.javafortesters.chap009arraysforloopiteration.examples;
 
+import com.javafortesters.domainentities.InvalidPassword;
 import com.javafortesters.domainentities.User;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -8,7 +9,7 @@ import java.util.Arrays;
 public class ArrayForLoopTest {
 
     @Test
-    public void createArrayOfObjects() {
+    public void createArrayOfObjects() throws InvalidPassword {
         User[] users = new User[3];
 
         users[0] = new User("Electra", "passwOrd");
@@ -21,7 +22,7 @@ public class ArrayForLoopTest {
     }
 
     @Test
-    public void iterateOverUserNames() {
+    public void iterateOverUserNames() throws InvalidPassword {
 
         User[] users = new User[3];
         users[0] = new User("Electra", "passwOrd");
@@ -38,7 +39,7 @@ public class ArrayForLoopTest {
     }
 
     @Test
-    public void createArrayOfHundred() {
+    public void createArrayOfHundred() throws InvalidPassword {
 
         User[] users = new User[100];
 

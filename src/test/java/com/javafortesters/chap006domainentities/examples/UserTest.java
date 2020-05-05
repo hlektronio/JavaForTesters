@@ -17,7 +17,7 @@ public class UserTest {
     }
 
     @Test
-    public void canConstructWithUsernameAndPassword(){
+    public void canConstructWithUsernameAndPassword() {
 
         User user = new User("admin", "pa55w0rd");
 
