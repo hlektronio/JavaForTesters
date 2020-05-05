@@ -10,7 +10,7 @@ public class User {
 
 
     public User()  {
-        this ("username", "password");
+
     }
 
     public String getUsername() {
