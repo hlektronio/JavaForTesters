@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 public class TestAllAsserts {
@@ -30,6 +31,31 @@ public class TestAllAsserts {
         assertSame(a,b);
         assertNotNull(array1);
         assertNull(i);
+
+    }
+    @Test
+    public void replicateAsserts(){
+        int a = 3;
+        int b = 3;
+        int[] array1 = {3,3,2};
+        int [] array2 = {2,3,3};
+        String i = null;
+
+        assertThat(a,is(b));
+        assertThat(7,is(not(a+b)));
+        assertThat(true,is(true));
+        assertThat(false,is(not(true)));
+        assertThat(a,is(equalTo(b)));
+        assertThat(array1,is(not(equalTo(array2))));
+        assertThat(i,is(nullValue()));
+        i="";
+        assertThat(i,is(not(nullValue())));
+        i="aString";
+        assertThat(i,containsString("ing"));
+        assertThat(i,is(not(containsString("ong"))));
+
+
+
 
     }
 }
