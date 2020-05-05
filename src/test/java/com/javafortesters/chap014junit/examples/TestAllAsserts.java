@@ -54,8 +54,15 @@ public class TestAllAsserts {
         assertThat(i,containsString("ing"));
         assertThat(i,is(not(containsString("ong"))));
 
-
-
-
+    }
+    @Test
+    public void useHamcrestMatchers(){
+        assertThat(3,is(3));
+        assertThat(3,is(equalTo(3)));
+        assertThat(3,is(not(2)));
+        assertThat("This is a string",containsString("is a"));
+        assertThat("This is a string",endsWith("ring"));
+        assertThat("This is a string",startsWith("Thi"));
+        assertThat(null,is(nullValue()));
     }
 }
