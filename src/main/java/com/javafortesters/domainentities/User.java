@@ -9,7 +9,7 @@ public class User {
     private TestAppEnv testAppEnv;
 
 
-    public User(){
+    public User()  {
         this ("username", "password");
     }
 
@@ -21,13 +21,19 @@ public class User {
         return password;
     }
 
-    public User(String username, String password){
+    public User(String username, String password)throws InvalidPassword{
+        if(password.length()<6){
+            throw new InvalidPassword("Password must be more than 6 characters");
+        }
         this.username = username;
         this.password = password;
         this.testAppEnv = new TestAppEnv();
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) throws InvalidPassword {
+        if(password.length()<6){
+            throw new InvalidPassword("Password must be more than 6 characters");
+        }
         this.password= password;
     }
 
@@ -37,6 +43,5 @@ public class User {
     public String getPermission(){
         return "Normal";
     }
-
 
 }

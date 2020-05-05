@@ -1,5 +1,6 @@
 package com.javafortesters.chap006domainentities.examples;
 
+import com.javafortesters.domainentities.InvalidPassword;
 import com.javafortesters.domainentities.User;
 import org.junit.Test;
 
@@ -28,7 +29,11 @@ public class UserTest {
     public void canSetPasswordAfterConstructed(){
 
         User user = new User();
-        user.setPassword("PaZZwor6");
+        try {
+            user.setPassword("PaZZwor6");
+        } catch (InvalidPassword invalidPassword) {
+            invalidPassword.printStackTrace();
+        }
 
         assertEquals("setter password expected", "PaZZwor6", user.getPassword());
     }
