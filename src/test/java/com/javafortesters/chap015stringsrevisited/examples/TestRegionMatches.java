@@ -46,4 +46,17 @@ public class TestRegionMatches {
 
         return occurences;
     }
+
+    @Test
+    public void checkStringBuilder(){
+        StringBuilder builder = new StringBuilder(0);
+        assertThat(builder.capacity(),is(0));
+        builder.append("Hello there");
+        assertThat(builder.capacity(),is(11));
+        builder.append(" asshole");
+        assertThat(builder.capacity(),is(24));
+        builder.delete(5,11);
+        assertThat(builder.toString(), is("Hello asshole"));
+        assertThat(builder.capacity(),is(24));
+    }
 }
