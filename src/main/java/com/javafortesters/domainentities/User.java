@@ -34,6 +34,13 @@ public class User {
         if(password.length()<6){
             throw new InvalidPassword("Password must be more than 6 characters");
         }
+        String mustIncludeDigit = ".*[0-9]+.*";
+        String mustIncludeUpperCase = ".*[A-Z]+.*";
+
+        if(!password.matches(mustIncludeDigit) || !password.matches(mustIncludeUpperCase)){
+            throw new InvalidPassword("Password must contain at least one digit and an uppercase letter");
+        }
+
         this.password= password;
     }
 
@@ -43,5 +50,7 @@ public class User {
     public String getPermission(){
         return "Normal";
     }
+
+
 
 }
