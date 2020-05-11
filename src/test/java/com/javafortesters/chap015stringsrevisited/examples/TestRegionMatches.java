@@ -58,5 +58,18 @@ public class TestRegionMatches {
         builder.delete(5,11);
         assertThat(builder.toString(), is("Hello asshole"));
         assertThat(builder.capacity(),is(24));
+        builder.delete(0,builder.length());
+        assertThat(builder.toString(),is(""));
+        builder.insert(0,"goodbye man");
+        assertThat(builder.toString(),is("goodbye man"));
+        builder.insert(builder.length(), ", goodbye");
+        builder.insert(0,"This is ");
+        assertThat(builder.toString(),is("This is goodbye man, goodbye"));
+        builder.replace(0,6,"It'");
+        builder.insert(4," a long slow");
+        builder.delete(24,builder.length());
+        assertThat(builder.toString(),is("It's a long slow goodbye"));
     }
+
+
 }
