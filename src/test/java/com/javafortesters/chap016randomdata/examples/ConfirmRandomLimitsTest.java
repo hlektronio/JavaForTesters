@@ -5,8 +5,7 @@ import org.junit.Test;
 import java.util.*;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class ConfirmRandomLimitsTest {
 
@@ -170,41 +169,57 @@ public class ConfirmRandomLimitsTest {
     @Test
     public void generateAges() {
         Random generate = new Random();
-        Map<Integer,Integer> ages = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> ages = new HashMap<Integer, Integer>();
 
 
         for (int i = 0; i < 1000; i++) {
 
-            int randomAge = (int)(generate.nextGaussian() * 5) + 35;
+            int randomAge = (int) (generate.nextGaussian() * 5) + 35;
 
             int ageCount = 0;
-            if (ages.containsKey(randomAge)){
+            if (ages.containsKey(randomAge)) {
                 ageCount = ages.get(randomAge);
             }
             ageCount++;
 
-            ages.put(randomAge,ageCount);
+            ages.put(randomAge, ageCount);
 
         }
         SortedSet<Integer> sorted = new TreeSet(ages.keySet());
 
-        for (int randomAge : sorted){
+        for (int randomAge : sorted) {
             System.out.println(randomAge + ":" + ages.get(randomAge));
         }
     }
 
     @Test
-    public void generateRandomSeed(){
+    public void generateRandomSeed() {
         Random generate = new Random(1234567L);
 
         assertEquals(generate.nextInt(), 1042961893);
-        assertEquals(generate.nextLong(),-6749250865724111202L);
-        assertThat(generate.nextDouble(),is(0.44762832574617084D));
-        assertThat(generate.nextGaussian(),is(-0.11571220872310763D));
+        assertEquals(generate.nextLong(), -6749250865724111202L);
+        assertThat(generate.nextDouble(), is(0.44762832574617084D));
+        assertThat(generate.nextGaussian(), is(-0.11571220872310763D));
         assertThat(generate.nextFloat(), is(0.33144182F));
-        assertThat(generate.nextBoolean(),is(false));
-     }
+        assertThat(generate.nextBoolean(), is(false));
     }
+
+    @Test
+    public void generateRandomString() {
+        Random generate = new Random();
+        StringBuilder finalString = new StringBuilder();
+
+        for (int i = 0; i < 100; i++) {
+            String charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+            int index = generate.nextInt(charSet.length());
+            char rChar = charSet.charAt(index);
+            finalString.append(rChar);
+        }
+        assertThat(finalString.toString().length(), is(100));
+        assertTrue(finalString.toString().matches("[A-Z ]+"));
+        System.out.print(finalString.toString());
+    }
+}
 
 
 
