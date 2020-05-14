@@ -89,42 +89,82 @@ public class ConfirmRandomLimitsTest {
         int arrayLength = generate.nextInt(100);
         byte[] bytes = new byte[arrayLength];
         generate.nextBytes(bytes);
-        assertEquals(arrayLength,bytes.length);
+        assertEquals(arrayLength, bytes.length);
         String viewBytes = new String(bytes);
         System.out.println(viewBytes);
     }
+
     @Test
-    public void checkRandomUnknown(){
+    public void checkRandomUnknown() {
         Random generate = new Random();
 
         for (int i = 0; i < 100; i++) {
             int x = generate.nextInt(10);
 
             System.out.println(x);
-            assertThat(x >=0,is(true));
-            assertThat(x<=9,is(true));
+            assertThat(x >= 0, is(true));
+            assertThat(x <= 9, is(true));
 
         }
     }
 
     @Test
-    public void generateThousandRangedNumbers(){
+    public void generateThousandRangedNumbers() {
         Random generate = new Random();
         int counter = 0;
 
-        for (int i = 0; i < 1000; i++){
+        for (int i = 0; i < 1000; i++) {
 
             int minValue = 15;
             int maxValue = 20;
 
-            int randomIntRange = generate.nextInt(maxValue - minValue +1)+minValue;
+            int randomIntRange = generate.nextInt(maxValue - minValue + 1) + minValue;
 
-            assertThat(randomIntRange<=maxValue,is(true));
-            assertThat(randomIntRange>=minValue, is(true));
+            assertThat(randomIntRange <= maxValue, is(true));
+            assertThat(randomIntRange >= minValue, is(true));
             counter++;
 
         }
-        assertEquals(counter,1000);
+        assertEquals(counter, 1000);
+
+    }
+
+    @Test
+    public void generateDoubleValues() {
+        Random generate = new Random();
+        int stdev1 = 0;
+        int stdev2 = 0;
+        int stdev3 = 0;
+        int stdev4 = 0;
+        int counter = 0;
+
+        for (int i = 0; i < 1000; i++) {
+
+            double randomGauss = generate.nextGaussian();
+
+            if(randomGauss> -1.0f && randomGauss < 1.0f){
+                stdev1++;
+            }
+            if(randomGauss> -2.0f && randomGauss < 2.0f){
+                stdev2++;
+            }
+            if(randomGauss> -3.0f && randomGauss < 3.0f){
+                stdev3++;
+            }
+            if(randomGauss> -4.0f && randomGauss < 4.0f){
+                stdev4++;
+            }
+
+        }
+
+        System.out.println("one standard deviation is " + stdev1*100/1000 + "%");
+        System.out.println("two standard deviation is " +stdev2*100/1000 + "%");
+        System.out.println("three standard deviation is " +stdev3*100/1000 + "%");
+        System.out.println("four standard deviation is " +stdev4*100/1000 + "%");
+
+        assertThat(stdev1<stdev2, is(true));
+        assertThat(stdev2<stdev3, is (true));
+        assertThat(stdev3<stdev4, is (true));
 
     }
 }
