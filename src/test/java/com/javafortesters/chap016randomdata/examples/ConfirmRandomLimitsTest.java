@@ -2,7 +2,7 @@ package com.javafortesters.chap016randomdata.examples;
 
 import org.junit.Test;
 
-import java.util.Random;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
@@ -136,37 +136,63 @@ public class ConfirmRandomLimitsTest {
         int stdev2 = 0;
         int stdev3 = 0;
         int stdev4 = 0;
-        int counter = 0;
 
         for (int i = 0; i < 1000; i++) {
 
             double randomGauss = generate.nextGaussian();
 
-            if(randomGauss> -1.0f && randomGauss < 1.0f){
+            if (randomGauss > -1.0f && randomGauss < 1.0f) {
                 stdev1++;
             }
-            if(randomGauss> -2.0f && randomGauss < 2.0f){
+            if (randomGauss > -2.0f && randomGauss < 2.0f) {
                 stdev2++;
             }
-            if(randomGauss> -3.0f && randomGauss < 3.0f){
+            if (randomGauss > -3.0f && randomGauss < 3.0f) {
                 stdev3++;
             }
-            if(randomGauss> -4.0f && randomGauss < 4.0f){
+            if (randomGauss > -4.0f && randomGauss < 4.0f) {
                 stdev4++;
             }
 
         }
 
-        System.out.println("one standard deviation is " + stdev1*100/1000 + "%");
-        System.out.println("two standard deviation is " +stdev2*100/1000 + "%");
-        System.out.println("three standard deviation is " +stdev3*100/1000 + "%");
-        System.out.println("four standard deviation is " +stdev4*100/1000 + "%");
+        System.out.println("one standard deviation is " + stdev1 * 100 / 1000 + "%");
+        System.out.println("two standard deviation is " + stdev2 * 100 / 1000 + "%");
+        System.out.println("three standard deviation is " + stdev3 * 100 / 1000 + "%");
+        System.out.println("four standard deviation is " + stdev4 * 100 / 1000 + "%");
 
-        assertThat(stdev1<stdev2, is(true));
-        assertThat(stdev2<stdev3, is (true));
-        assertThat(stdev3<stdev4, is (true));
+        assertThat(stdev1 < stdev2, is(true));
+        assertThat(stdev2 < stdev3, is(true));
+        assertThat(stdev3 < stdev4, is(true));
 
     }
-}
+
+    @Test
+    public void generateAges() {
+        Random generate = new Random();
+        Map<Integer,Integer> ages = new HashMap<Integer, Integer>();
+
+
+        for (int i = 0; i < 1000; i++) {
+
+            int randomAge = (int)(generate.nextGaussian() * 5) + 35;
+
+            int ageCount = 0;
+            if (ages.containsKey(randomAge)){
+                ageCount = ages.get(randomAge);
+            }
+            ageCount++;
+
+            ages.put(randomAge,ageCount);
+
+        }
+        SortedSet<Integer> sorted = new TreeSet(ages.keySet());
+
+        for (int randomAge : sorted){
+            System.out.println(randomAge + ":" + ages.get(randomAge));
+        }
+        }
+    }
+
 
 
