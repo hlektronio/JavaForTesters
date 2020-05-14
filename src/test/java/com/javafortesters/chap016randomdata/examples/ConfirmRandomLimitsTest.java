@@ -106,6 +106,27 @@ public class ConfirmRandomLimitsTest {
 
         }
     }
+
+    @Test
+    public void generateThousandRangedNumbers(){
+        Random generate = new Random();
+        int counter = 0;
+
+        for (int i = 0; i < 1000; i++){
+
+            int minValue = 15;
+            int maxValue = 20;
+
+            int randomIntRange = generate.nextInt(maxValue - minValue +1)+minValue;
+
+            assertThat(randomIntRange<=maxValue,is(true));
+            assertThat(randomIntRange>=minValue, is(true));
+            counter++;
+
+        }
+        assertEquals(counter,1000);
+
+    }
 }
 
 
