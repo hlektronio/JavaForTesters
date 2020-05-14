@@ -191,7 +191,19 @@ public class ConfirmRandomLimitsTest {
         for (int randomAge : sorted){
             System.out.println(randomAge + ":" + ages.get(randomAge));
         }
-        }
+    }
+
+    @Test
+    public void generateRandomSeed(){
+        Random generate = new Random(1234567L);
+
+        assertEquals(generate.nextInt(), 1042961893);
+        assertEquals(generate.nextLong(),-6749250865724111202L);
+        assertThat(generate.nextDouble(),is(0.44762832574617084D));
+        assertThat(generate.nextGaussian(),is(-0.11571220872310763D));
+        assertThat(generate.nextFloat(), is(0.33144182F));
+        assertThat(generate.nextBoolean(),is(false));
+     }
     }
 
 
