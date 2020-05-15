@@ -65,11 +65,25 @@ public class TestTime {
     @Test
     public void calendarToString(){
         Calendar cal = Calendar.getInstance();
-        System.out.println(cal.toString());
+        System.out.println(cal.toString() );
         String stringDate = cal.getTime().toString();
 
         System.out.println(stringDate);
         Date milliDate = new Date(System.currentTimeMillis());
         assertEquals(stringDate, milliDate.toString());
+    }
+
+    @Test
+    public void useCalendarConstants(){
+        Calendar cal = Calendar.getInstance();
+
+        cal.set(2013,cal.DECEMBER, 15, 23, 49, 54);
+        assertEquals(cal.get(Calendar.YEAR),2013);
+        assertEquals(cal.get(Calendar.MONTH),11);
+        assertEquals(cal.get(Calendar.DATE),15);
+        assertEquals(cal.get(Calendar.HOUR),11);
+        assertEquals(cal.get(Calendar.HOUR_OF_DAY),23);
+        assertEquals(cal.get(Calendar.MINUTE),49);
+        assertEquals(cal.get(Calendar.SECOND),54);
     }
 }
