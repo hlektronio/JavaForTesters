@@ -2,7 +2,11 @@ package com.javafortesters.chap017datesandtimes.examples;
 
 import org.junit.Test;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 
 public class TestTime {
@@ -55,7 +59,17 @@ public class TestTime {
         assertTrue(!userId.contains("8"));
         assertTrue(!userId.contains("9"));
 
-
         System.out.println(userId);
+    }
+
+    @Test
+    public void calendarToString(){
+        Calendar cal = Calendar.getInstance();
+        System.out.println(cal.toString());
+        String stringDate = cal.getTime().toString();
+
+        System.out.println(stringDate);
+        Date milliDate = new Date(System.currentTimeMillis());
+        assertEquals(stringDate, milliDate.toString());
     }
 }
