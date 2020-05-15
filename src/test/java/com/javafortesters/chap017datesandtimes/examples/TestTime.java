@@ -6,7 +6,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 
 public class TestTime {
@@ -85,5 +87,8 @@ public class TestTime {
         assertEquals(cal.get(Calendar.HOUR_OF_DAY),23);
         assertEquals(cal.get(Calendar.MINUTE),49);
         assertEquals(cal.get(Calendar.SECOND),54);
+        assertThat(cal.get(Calendar.DAY_OF_WEEK), is (Calendar.SUNDAY));
+        assertThat(cal.get(Calendar.DAY_OF_WEEK), is (1));
+        assertThat(cal.get(Calendar.DAY_OF_YEAR), is(349));
     }
 }
