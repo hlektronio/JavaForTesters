@@ -90,5 +90,31 @@ public class TestTime {
         assertThat(cal.get(Calendar.DAY_OF_WEEK), is (Calendar.SUNDAY));
         assertThat(cal.get(Calendar.DAY_OF_WEEK), is (1));
         assertThat(cal.get(Calendar.DAY_OF_YEAR), is(349));
+
+        cal.set(2013,cal.DECEMBER,23);
+        cal.add(Calendar.MONTH,5);
+        assertThat(cal.get(Calendar.MONTH), is (Calendar.MAY));
+        cal.add(Calendar.DAY_OF_WEEK,11);
+        assertEquals(cal.get(Calendar.DATE),3);
+        cal.add(Calendar.YEAR,-3);
+        assertEquals(cal.get(Calendar.YEAR), 2011);
+
     }
+
+    @Test
+    public void seeDifferenceBetweenRollAndAdd(){
+        Calendar cal = Calendar.getInstance();
+
+        cal.set(2013,cal.DECEMBER,23);
+        cal.roll(Calendar.DAY_OF_MONTH,17);
+        assertEquals(cal.get(Calendar.MONTH),11);
+        assertEquals(cal.get(Calendar.YEAR),2013);
+        assertEquals(cal.get(Calendar.DAY_OF_MONTH),9);
+
+        cal.set(2013,cal.DECEMBER,23);
+        cal.add(Calendar.DAY_OF_MONTH,17);
+        assertEquals(cal.get(Calendar.YEAR),2014);
+
+    }
+
 }
