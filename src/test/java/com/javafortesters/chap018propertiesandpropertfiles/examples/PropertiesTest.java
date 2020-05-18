@@ -26,4 +26,10 @@ public class PropertiesTest {
         assertThat(properties.getProperty("permission","Admin"), is("Admin"));
     }
 
+    @Test
+    public void outputSystemProperties(){
+        Properties sys = System.getProperties();
+        sys.list(System.out);
+    }
+
 }
