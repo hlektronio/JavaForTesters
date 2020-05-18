@@ -30,6 +30,16 @@ public class PropertiesTest {
     public void outputSystemProperties(){
         Properties sys = System.getProperties();
         sys.list(System.out);
+        String userDir = sys.getProperty("user.dir");
+        System.out.println(userDir);
+        String userHome = sys.getProperty("user.home");
+        String lineSeparator = sys.getProperty("line.separator");
+        String fileSeparator = sys.getProperty("file.separator");
+        String tempDir = sys.getProperty("java.io.tmpdir");
+        System.out.println(userHome);
+        System.out.println(lineSeparator);
+        System.out.println(fileSeparator);
+        System.out.println(tempDir);
     }
 
 }
