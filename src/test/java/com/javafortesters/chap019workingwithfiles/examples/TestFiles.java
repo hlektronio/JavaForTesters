@@ -4,10 +4,13 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class TestFiles {
 
@@ -55,6 +58,26 @@ public class TestFiles {
         anotherCustomFile.delete();
         assertThat(customCodeFile.exists(),is(false));
         assertThat(anotherCustomFile.exists(),is(false));
-
     }
+
+    @Test
+    public void checkCanonicalPath() throws IOException {
+        Properties sys = System.getProperties();
+        String tempDir = sys.getProperty("java.io.tmpdir");
+
+        Path path = Paths.get(tempDir,"1/2/3/4/5/../../../..");
+        Path anotherPath = Paths.get(tempDir,"1/2/../../1");
+        System.out.println(path.toFile());
+
+        File createdFileOne = path.toFile();
+        File createdFileTwo = anotherPath.toFile();
+
+        System.out.println(createdFileOne.getCanonicalPath());
+        System.out.printf(createdFileTwo.getCanonicalPath());
+
+        assertEquals(createdFileOne.getCanonicalPath(),createdFileTwo.getCanonicalPath());
+        createdFileOne.deleteOnExit();
+        createdFileTwo.deleteOnExit();
+    }
+
 }
