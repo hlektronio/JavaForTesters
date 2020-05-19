@@ -2,8 +2,7 @@ package com.javafortesters.chap019workingwithfiles.examples;
 
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
@@ -78,6 +77,36 @@ public class TestFiles {
         assertEquals(createdFileOne.getCanonicalPath(),createdFileTwo.getCanonicalPath());
         createdFileOne.deleteOnExit();
         createdFileTwo.deleteOnExit();
+    }
+
+    @Test
+    public void checkTempDirectory(){
+        File tempDir = new File(System.getProperty("java.io.tmpdir"));
+        assertThat(tempDir.isFile(),is(false));
+        assertThat(tempDir.isDirectory(),is(true));
+    }
+
+    @Test
+    public void printWriterAndAppend() throws IOException {
+        File tempFile = new File(System.getProperty("java.io.tmpdir"),"text.txt");
+        System.out.println(tempFile.getCanonicalPath());
+
+        FileWriter writer = new FileWriter(tempFile);
+        BufferedWriter buffer = new BufferedWriter(writer);
+        PrintWriter print = new PrintWriter(buffer);
+
+        String textToWrite = "it's written in text now";
+
+        print.println(textToWrite);
+        print.close();
+
+        writer = new FileWriter(tempFile,true);
+        buffer = new BufferedWriter(writer);
+        print = new PrintWriter(buffer);
+
+        print.println("===========================");
+        print.close();
+
     }
 
 }
