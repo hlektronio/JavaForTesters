@@ -34,16 +34,27 @@ public class TestFiles {
     @Test
     public void createTempFileWithCustomCode() throws IOException {
         Long fileNamePart = System.currentTimeMillis();
-        File customCodeFile = File.createTempFile(fileNamePart.toString(),".io");
-        assertThat(customCodeFile.exists(),is(true));
+        File customCodeFile = new File("/var/folders/f1/qw1wk0757zs7kvvklsngtq580000gn/T/",
+                (fileNamePart.toString()+".io"));
+
+        File anotherCustomFile = File.createTempFile((fileNamePart.toString()),".io");
+
+        assertThat(customCodeFile.exists(),is(false));
+        assertThat(anotherCustomFile.exists(),is(true));
         System.out.println(customCodeFile.getAbsolutePath());
+        System.out.println(anotherCustomFile.getAbsolutePath());
 
         Properties sys = System.getProperties();
         String tempDir = sys.getProperty("java.io.tmpdir");
         System.out.println(tempDir);
         assertThat(customCodeFile.getAbsolutePath().contains(tempDir),is(true));
         assertThat(customCodeFile.getAbsolutePath().contains(fileNamePart.toString()),is(true));
+        assertThat(anotherCustomFile.getAbsolutePath().contains(tempDir),is(true));
+        assertThat(anotherCustomFile.getAbsolutePath().contains(fileNamePart.toString()),is(true));
         customCodeFile.delete();
+        anotherCustomFile.delete();
         assertThat(customCodeFile.exists(),is(false));
+        assertThat(anotherCustomFile.exists(),is(false));
+
     }
 }
