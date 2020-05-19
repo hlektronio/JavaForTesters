@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,5 +29,21 @@ public class TestFiles {
         for (int i = 0; i<roots.length; i++){
             System.out.println(roots[i].getAbsolutePath());
         }
+    }
+
+    @Test
+    public void createTempFileWithCustomCode() throws IOException {
+        Long fileNamePart = System.currentTimeMillis();
+        File customCodeFile = File.createTempFile(fileNamePart.toString(),".io");
+        assertThat(customCodeFile.exists(),is(true));
+        System.out.println(customCodeFile.getAbsolutePath());
+
+        Properties sys = System.getProperties();
+        String tempDir = sys.getProperty("java.io.tmpdir");
+        System.out.println(tempDir);
+        assertThat(customCodeFile.getAbsolutePath().contains(tempDir),is(true));
+        assertThat(customCodeFile.getAbsolutePath().contains(fileNamePart.toString()),is(true));
+        customCodeFile.delete();
+        assertThat(customCodeFile.exists(),is(false));
     }
 }
