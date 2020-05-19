@@ -106,6 +106,7 @@ public class TestFiles {
 
         print.println("===========================");
         print.close();
+        tempFile.deleteOnExit();
 
     }
 
